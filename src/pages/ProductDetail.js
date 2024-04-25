@@ -2,16 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 
-// Компонент для отображения подробной информации о товаре
 function ProductDetail() {
-  // Используем хук useState для хранения состояния товара
   const [product, setProduct] = useState(null);
-  // Используем хук useParams для получения параметра productId из URL
   const { productId } = useParams();
-
-  // Используем хук useEffect для выполнения API-запроса при загрузке компонента или изменении параметра productId
   useEffect(() => {
-    // Определяем асинхронную функцию fetchShop для выполнения API-запроса
     const fetchShop = async () => {
       const response = await fetch(
         `https://fakestoreapi.com/products/${productId}`
@@ -21,13 +15,9 @@ function ProductDetail() {
     };
     fetchShop();
   }, [productId]);
-
-  // Если товар не загружен, отображаем сообщение о загрузке
   if (!product) {
     return <p>Loading...</p>;
   }
-
-  // Возвращаем JSX для отображения подробной информации о товаре
   return (
     <div className="product-container">
       <div className="product-details">
